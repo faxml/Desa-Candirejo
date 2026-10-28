@@ -100,3 +100,4 @@ Dikembangkan bersama **Tim KKN Desa Candirejo** — Universitas *(sesuaikan)*
 
 © 2026 **Pemerintah Desa Candirejo**, Kec. Semanu, Kab. Gunungkidul, DIY.  
 Dikembangkan bersama Tim KKN 💚
+
