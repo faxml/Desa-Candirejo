@@ -2,7 +2,11 @@
 <html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f392b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Desa Candirejo - Kec. Semanu, Kab. Gunungkidul | Portal Resmi</title>
   <meta name="description" content="Website Resmi Desa Candirejo, Kecamatan Semanu, Kabupaten Gunungkidul. Pusat informasi pelayanan administrasi warga, katalog UMKM unggulan, dan destinasi wisata budaya.">
   
@@ -154,6 +158,170 @@
       height: 2px;
       background-color: #f0c040;
       border-radius: 2px;
+    }
+
+    /* ============================================
+       MOBILE RESPONSIVENESS FIXES
+       Tested for Android & iOS (375px - 430px)
+    ============================================ */
+
+    /* Prevent horizontal scroll globally */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Hero heading – prevent overflow on tiny screens */
+    @media (max-width: 380px) {
+      h1.animate-hero-title {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+      }
+    }
+
+    /* Fix: CTA buttons full-width stacked on mobile */
+    @media (max-width: 639px) {
+      .hero-cta-wrap {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-cta-wrap a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Fix: Stat cards – 2 cols grid, no text overflow */
+    @media (max-width: 639px) {
+      .glass-card {
+        padding: 0.875rem !important;
+      }
+      .glass-card .text-2xl {
+        font-size: 1.35rem !important;
+      }
+    }
+
+    /* Fix: Tab buttons on Profil – wrap & scroll */
+    .tab-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    @media (max-width: 639px) {
+      .tab-btn-row {
+        justify-content: center;
+      }
+      .tab-btn {
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0.85rem !important;
+      }
+    }
+
+    /* Fix: UMKM filter button wrap on mobile */
+    @media (max-width: 639px) {
+      .umkm-filter-btn {
+        font-size: 0.7rem !important;
+        padding: 0.45rem 0.75rem !important;
+      }
+    }
+
+    /* Fix: Layanan card – long word break */
+    .layanan-card li,
+    .layanan-card p,
+    .layanan-card span {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Fix: Footer iframe (Google Maps) full width on mobile */
+    @media (max-width: 767px) {
+      .maps-embed iframe {
+        width: 100% !important;
+        height: 220px !important;
+      }
+    }
+
+    /* Fix: Modal on mobile – padding & font size */
+    @media (max-width: 639px) {
+      #news-modal-card {
+        margin: 0.5rem;
+        border-radius: 1.25rem !important;
+      }
+      #news-modal-card h3 {
+        font-size: 1.1rem !important;
+      }
+      #news-modal-card #modal-content {
+        font-size: 0.82rem !important;
+      }
+      #news-modal-card .relative.h-64 {
+        height: 180px !important;
+      }
+    }
+
+    /* Fix: Organisasi cards – 2 cols on mobile */
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .org-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .org-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Fix: Wisata cards grid – 1 col mobile, 2 tablet, 4 desktop */
+    /* Already handled by Tailwind, ensure image height */
+    @media (max-width: 639px) {
+      .wisata-img { height: 180px !important; }
+    }
+
+    /* Fix: Berita cards – image height mobile */
+    @media (max-width: 639px) {
+      .berita-img { height: 180px !important; }
+    }
+
+    /* Fix: Footer – stack columns on mobile */
+    @media (max-width: 767px) {
+      .footer-col {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+    }
+
+    /* Fix: Back to top – safe position above mobile browser bar */
+    #back-to-top {
+      bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+    }
+
+    /* Touch-friendly: larger tap targets */
+    @media (hover: none) and (pointer: coarse) {
+      .umkm-filter-btn,
+      .tab-btn,
+      .mobile-nav-link,
+      button {
+        min-height: 44px;
+      }
+      .umkm-filter-btn {
+        min-height: 38px;
+      }
+    }
+
+    /* Fix: Search input mobile */
+    @media (max-width: 639px) {
+      #layanan-search {
+        font-size: 16px !important; /* Prevent iOS zoom on focus */
+      }
+    }
+
+    /* Smooth image loading */
+    img {
+      image-rendering: auto;
     }
   </style>
 </head>
@@ -1002,7 +1170,7 @@
           <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-emerald-700">
             <i class="fa-solid fa-magnifying-glass text-lg"></i>
           </div>
-          <input type="text" id="layanan-search" placeholder="Cari jenis layanan atau persyaratan..." class="w-full pl-12 pr-4 py-3.5 rounded-full border-2 border-emerald-100 focus:border-emas-500 focus:ring-4 focus:ring-emas-100 text-gray-800 placeholder-gray-400 text-sm sm:text-base outline-none shadow-sm transition-all duration-200">
+          <input type="text" id="layanan-search" placeholder="Cari jenis layanan atau persyaratan..." class="w-full pl-12 pr-4 py-3.5 rounded-full border-2 border-emerald-100 focus:border-emas-500 focus:ring-4 focus:ring-emas-100 text-gray-800 placeholder-gray-400 text-sm sm:text-base outline-none shadow-sm transition-all duration-200" style="font-size:16px">
         </div>
         <p id="search-status" class="text-xs text-gray-500 text-center mt-2 font-medium">Menampilkan 4 jenis layanan administrasi</p>
       </div>
